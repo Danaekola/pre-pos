@@ -1,42 +1,41 @@
 function create_updated_collection(collection_a, object_b) {
   //在这里写入代码
-  var count1=1;
-var flag;
- var collection_c=[];
- var keke=object_b.value;
- for(var i=0;i<collection_a.length;i++){
-   flag=true;
-   if(collection_a[i].length==3)
-   {
-       var temp=new Object();
-   temp.key=collection_a[i].charAt(0);
-   temp.count=parseInt(collection_a[i].charAt(2));
-       collection_c.push(temp);
-   continue;
+   var collection_c=[];
+   getCollection_c(collection_a,collection_c);
+   for(var x=0;x<collection_c.length;x++){
+	   searchSameElement(collection_c[x],object_b);
+       console.log(collection_c[x].key+'='+collection_c[x].count);
    }
-   else if(collection_a[i]==collection_a[i+1])
- {
-   count1++;
-   flag=false;
-   continue;
- }
- if(flag==true){
-   var temp=new Object();
-   temp.key=collection_a[i];
-   temp.count=count1;
-       collection_c.push(temp);
-   count1=1;
- }
- }
-for(var i=0;i<collection_c.length;i++){
-   for(var j=0;j<keke.length;j++)
-   if(collection_c[i].key==keke[j]){
-   x=collection_c[i].count/3;
-
-     collection_c[i].count=collection_c[i].count-Math.floor(x);
- }
- }
- for(var i=0;i<collection_c.length;i++)
- console.log(collection_c[i].key+'='+collection_c[i].count);
- return collection_c;
+    return collection_c;
+}
+function searchSameElement(a_element,object_b){
+       var temp=object_b.value;
+	   for(var y=0;y<temp.length;y++)
+		   if(a_element.key==temp[y])
+		      a_element.count=a_element.count-Math.floor(a_element.count/3);
+}
+function getCollection_c(collection_a,collection_c){
+    var count1=1,flag;
+    for(var m=0;m<collection_a.length;m++){
+	   flag=true;
+	   if(collection_a[m].length==3){
+          var temp=new Object();
+		  temp.key=collection_a[m].charAt(0);
+		  temp.count=parseInt(collection_a[m].charAt(2));
+          collection_c.push(temp);
+		  continue;
+	   }
+	   else if(collection_a[m]==collection_a[m+1]){
+	      count1++;
+	      flag=false;
+	      continue;
+	   }
+	   if(flag==true){
+		  var temp=new Object();
+		  temp.key=collection_a[m];
+		  temp.count=count1;
+          collection_c.push(temp);
+		  count1=1;
+	   }
+   }
 }

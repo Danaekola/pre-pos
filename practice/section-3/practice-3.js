@@ -1,36 +1,36 @@
 function create_updated_collection(collection_a, object_b) {
   //在这里写入代码
-  var count1=1,x;
-  var flag,keke=object_b.value;
-  var collection_c=[];
-  for(var i=0;i<collection_a.length-1;i++){
-	  flag=true;
-	  if(collection_a[i]==collection_a[i+1])
-	{
-	  count1++;
-	  flag=false;
-	  if(i!=collection_a.length-2)
-	    continue;
-	  else
-		  flag=true;
-	}
-	if(flag==true){
-		var temp=new Object();
-		temp.key=collection_a[i];
-		temp.count=count1;
-        collection_c.push(temp);
-		count1=1;
-	}
+    var collection_c=[];
+    getCollection_c(collection_a,collection_c);
+    for(var x=0;x<collection_c.length;x++)
+	   searchSameElement(collection_c[x],object_b);
+       return collection_c;
 }
-for(var i=0;i<collection_c.length;i++){
-	  for(var j=0;j<keke.length;j++)
-	  if(collection_c[i].key==keke[j]){
-	  x=collection_c[i].count/3;
+function searchSameElement(a_element,object_b){
+       var temp=object_b.value;
+	   for(var y=0;y<temp.length;y++)
+		   if(a_element.key==temp[y])
+		      a_element.count=a_element.count-Math.floor(a_element.count/3);
 
-      collection_c[i].count=collection_c[i].count-Math.floor(x);
-  }
-  }
-
-   return collection_c;
-
+}
+function getCollection_c(collection_a,collection_c){
+     var count1=1,flag;
+     for(var m=0;m<collection_a.length-1;m++){
+	    flag=true;
+	    if(collection_a[m]==collection_a[m+1]){
+	       count1++;
+	       flag=false;
+	       if(m!=collection_a.length-2)
+	        continue;
+	       else
+		    flag=true;
+	    }
+	    if(flag==true){
+		  var temp=new Object();
+		  temp.key=collection_a[m];
+		  temp.count=count1;
+          collection_c.push(temp);
+		  count1=1;
+	    }
+     }
 }

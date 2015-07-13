@@ -2,15 +2,12 @@ function collect_same_elements(collection_a, object_b) {
   //在这里写入代码
   var result=[];
   var temp=object_b.value;
-  for(var i=0;i<collection_a.length;i++)
-	{
-	  for(var j=0;j<temp.length;j++)
-		  {
-         if(collection_a[i].key==temp[j])
-			 {
-               result.push(collection_a[i].key);
-			 }
-	      }
-    }
-	return result;
+  for(var x=0;x<collection_a.length;x++)
+	  searchSameElement(collection_a[x],temp,result);
+      return result;
+}
+function searchSameElement(a_element,temp,result){
+      for(var y=0;y<temp.length;y++)
+		   if(a_element.key==temp[y])
+		    result.push(a_element.key);
 }
